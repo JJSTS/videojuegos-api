@@ -1,17 +1,22 @@
-from fastapi import APIRouter, HTTPException
-from models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
-from data.videojuego_repository import VideojuegoRepository
-from data.db import SessionDep
+from fastapi import APIRouter, HTTPException, Depends
+from sqlmodel import Session
+from typing import Annotated
+
+from src.models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
+from src.data.videojuego_repository import VideojuegoRepository
+from src.data.db import get_session, init_db
 
 router = APIRouter(prefix="/api/videojuegos", tags=["videojuegos"])
+
+SessionDep = Annotated[Session, Depends(get_session)]
 
 # Rutas para la API de videojuegos
 
 @router.get("/", response_model=list[VideojuegoResponse])
-def lista_videojuegos(session: SessionDep):
+async def lista_videojuegos(session: SessionDep):
     repo = VideojuegoRepository(session)
     videojuegos = repo.get_all_videojuego()
-    return videojuegos
+    return [map_videojuego_to_response(videojuego) for videojuego in videojuegos]
 
 @router.post("/", response_model=VideojuegoResponse)
 def nuevo_videojuego(videojuego_created: VideojuegoCreate, session: SessionDep):
@@ -28,14 +33,14 @@ def videojuego_por_id(videojuego_id: int, session: SessionDep):
         raise HTTPException(status_code=404, detail="Videojuego no encontrado")
     return map_videojuego_to_response(videojuego_encontrado)
 
-@router.delete("/{videojuego_id}")
+@router.delete("/{videojuego_id}", status_code=204)
 def borrar_videojuego(videojuego_id: int, session: SessionDep):
     repo = VideojuegoRepository(session)
     videojuego_encontrado = repo.get_videojuego(videojuego_id)
     if not videojuego_encontrado:
         raise HTTPException(status_code=404, detail="Videojuego no encontrado")
     repo.delete_videojuego(videojuego_encontrado)
-    return {"mensaje": "Videojuego eliminado"}
+    return None
 
 @router.patch("/{videojuego_id}", response_model=Videojuego)
 def cambiar_videojuego(videojuego_id: int, videojuego: Videojuego, session: SessionDep):

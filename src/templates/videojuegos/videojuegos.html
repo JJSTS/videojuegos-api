@@ -7,14 +7,18 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Género</th>
+            <th>Fecha de lanzamiento</th>
             <th>Plataforma</th>
+            <th>Ver detalles</th>
         </tr>
         {% for videojuego in videojuegos %}
         <tr>
             <td>{{videojuego.id}}</td>
             <td>{{videojuego.nombre}}</td>
             <td>{{videojuego.genero}}</td>
+            <td>{{videojuego.fecha_lanzamiento}}</td>
             <td>{{videojuego.plataforma}}</td>
+            <td><a href="/videojuegos/{{ videojuego.id }}"></a>Ver</td>
         </tr>
         {% endfor %}
     </table>

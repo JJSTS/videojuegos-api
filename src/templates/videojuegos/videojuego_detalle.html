@@ -1,0 +1,16 @@
+{% extends "fragments/base.html" %}
+{% block title %}Videojuegos{% endblock %}
+
+{% block content %}
+<h2> Detalle del videojuego {{ videojuego.id }}</h2>
+<ul>
+    <li> Nombre: {{ videojuego.nombre }}</li>
+    <li> Género: {{ videojuego.genero }}</li>
+    <li> Fecha estreno: {{ videojuego.fecha_lanzamiento }}</li>
+    <li> Plataforma: {{ videojuego.plataforma }}</li>
+</ul>
+{% endblock %}
+
+{% block footer %}
+Autor: Juan Trejo
+{% endblock %}
