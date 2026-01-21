@@ -1,0 +1,13 @@
+name: fastapi-mysql
+
+services:
+  db-mysql:
+    image: mysql
+    container_name: db-videjuegos
+    environment:
+      MYSQL_ROOT_PASSWORD: jjsts
+      MYSQL_DATABASE: videojuegosdb
+      MYSQL_USER: jjsts
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
