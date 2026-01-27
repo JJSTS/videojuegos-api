@@ -1,5 +1,6 @@
 from sqlmodel import Session, select
-from src.models.videojuego import Videojuego
+from models.videojuego import Videojuego
+
 class VideojuegoRepository:
     def __init__(self, session: Session):
         self.session = session
