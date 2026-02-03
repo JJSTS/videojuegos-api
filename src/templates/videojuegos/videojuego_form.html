@@ -2,36 +2,54 @@
 
 {% block content %}
 
-<div class="form-container">
-    <div class="container mt-4 mb-4">
-        <div class="text-center mb-4">
-            <h2 class="text-center mb-5">Nuevo Videojuego</h2>
-            <form class="row g-3 m-auto" style="max-width: 600px;">
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Nombre del Videojuego</label>
-                    <input type="email" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Género</label>
-                    <input type="text" class="form-control" id="inputEmail4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPassword4" class="form-label">Fecha de lanzamiento</label>
-                    <input type="date" class="form-control" id="inputPassword4">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputEmail4" class="form-label">Plataforma</label>
-                    <input type="text" class="form-control" id="inputEmail4">
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            
+            <div class="card shadow-lg border-0 rounded-4">
+                
+                <div class="card-header bg-white border-0 pt-4 pb-0">
+                    <h2 class="text-center fw-bold text-primary">Nuevo Videojuego</h2>
                 </div>
 
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">Sign in</button>
+                <div class="card-body p-5"> 
+                    <form class="row g-4">
+                        
+                        <div class="col-md-6">
+                            <label for="nombreVideojuego" class="form-label fw-semibold">Nombre del Videojuego</label>
+                            <input type="text" class="form-control" id="nombreVideojuego" placeholder="Ej. Terraria">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="generoVideojuego" class="form-label fw-semibold">Género</label>
+                            <input type="text" class="form-control" id="generoVideojuego" placeholder="Ej. Aventura">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="fechaLanzamiento" class="form-label fw-semibold">Fecha de lanzamiento</label>
+                            <input type="date" class="form-control" id="fechaLanzamiento">
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <label for="plataformaVideojuego" class="form-label fw-semibold">Plataforma</label>
+                            <input type="text" class="form-control" id="plataformaVideojuego" placeholder="Ej. Nintendo Switch">
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-bold">Guardar Videojuego</button>
+                        </div>
+
+                    </form>
                 </div>
-            </form>
+            </div>
+            
+            <div class="text-center mt-3">
+                <a href="/videojuegos" class="text-decoration-none text-secondary fw-semibold">
+                    ← Volver a la lista de Videojuegos
+                </a>
+            </div>
+
         </div>
     </div>
-    
-
-    <a href="/videojuegos" class="back-link">← Volver a la lista de Videojuego</a>
 </div>
 {% endblock %}
