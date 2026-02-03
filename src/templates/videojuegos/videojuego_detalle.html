@@ -2,13 +2,36 @@
 {% block title %}Videojuegos{% endblock %}
 
 {% block content %}
-<h2> Detalle del videojuego {{ videojuego.id }}</h2>
-<ul>
-    <li> Nombre: {{ videojuego.nombre }}</li>
-    <li> Género: {{ videojuego.genero }}</li>
-    <li> Fecha : {{ videojuego.fecha_lanzamiento }}</li>
-    <li> Plataforma: {{ videojuego.plataforma }}</li>
-</ul>
+<div class="container mt-4 mb-4 p-4 border rounded-3 bg-light">
+    <div class="text-center mb-4">
+    <h2 class="text-center mb-5"> Detalle del videojuego {{ videojuego.id }}</h2>
+
+    </div>
+    <table class="table table-info table-striped text-center border rounded-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Género</th>
+                <th scope="col">Fecha de Lanzamiento</th>
+                <th scope="col">Plataforma</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Nombre: {{ videojuego.nombre }}</td>
+                <td>Género: {{ videojuego.genero }}</td>
+                <td>Fecha de Lanzamiento: {{ videojuego.fecha_lanzamiento }}</td>
+                <td>Plataforma: {{ videojuego.plataforma }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a href="/videojuegos" class="btn btn-primary mb-3 mt-4 justify-content-center">Volver al listado de videojuegos</a>
+    </div>
+</div>
+
 {% endblock %}
 
 {% block footer %}
