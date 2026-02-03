@@ -75,3 +75,6 @@ async def videojuego_por_id(request: Request, videojuego_id: int, session: Sessi
         raise HTTPException(status_code=404, detail="Videojuego no encontrado")
     videojuego_response = map_videojuego_to_response(videojuego_encontrado)
     return templates.TemplateResponse("videojuegos/videojuego_detalle.html", {"request": request, "videojuego": videojuego_response})
+
+if __name__ == "__main__":
+    uvicorn.run("src.main:app", host="127.0.0.1", port=8000, reload=True)
