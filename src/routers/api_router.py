@@ -2,9 +2,9 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlmodel import Session
 from typing import Annotated
 
-from models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
-from data.videojuego_repository import VideojuegoRepository
-from data.db import get_session, init_db
+from src.models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
+from src.data.videojuego_repository import VideojuegoRepository
+from src.data.db import get_session, init_db
 
 router = APIRouter(prefix="/api/videojuegos", tags=["videojuegos"])
 

@@ -7,10 +7,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from sqlmodel import Session, select
 
-from data.db import get_session, init_db
-from models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
-from data.videojuego_repository import VideojuegoRepository
-from routers.api_router import router as api_videojuegos_router
+from src.data.db import get_session, init_db
+from src.models.videojuego import Videojuego, VideojuegoCreate, map_create_to_videojuego, map_videojuego_to_response
+from src.data.videojuego_repository import VideojuegoRepository
+from src.routers.api_router import router as api_videojuegos_router
 
 import uvicorn
 
@@ -23,8 +23,8 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 app = FastAPI(lifespan=lifespan)
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+templates = Jinja2Templates(directory="src/templates")
 
 app.include_router(api_videojuegos_router)
 
@@ -75,6 +75,3 @@ async def videojuego_por_id(request: Request, videojuego_id: int, session: Sessi
         raise HTTPException(status_code=404, detail="Videojuego no encontrado")
     videojuego_response = map_videojuego_to_response(videojuego_encontrado)
     return templates.TemplateResponse("videojuegos/videojuego_detalle.html", {"request": request, "videojuego": videojuego_response})
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=3000, reload=True)
