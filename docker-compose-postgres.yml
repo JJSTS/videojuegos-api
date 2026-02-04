@@ -1,18 +1,22 @@
 name: fastapi-postgres
 
 services:
-  db-postgres:
-    image: postgres:15
-    container_name: db-postgres
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi-app-postgres
     restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db-postgres
+  db-postgres:
+    image: postgres
+    container_name: fastapi-db-postgres
     environment:
-      POSTGRES_USER: jjsts
-      POSTGRES_DB: videojuegosdb
-      POSTGRES_PASSWORD: 1234
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data:
