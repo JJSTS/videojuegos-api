@@ -2,15 +2,35 @@
 {% block title %}Videojuegos{% endblock %}
 
 {% block content %}
-<h2> Detalle del videojuego {{ videojuego.id }}</h2>
-<ul>
-    <li> Nombre: {{ videojuego.nombre }}</li>
-    <li> Género: {{ videojuego.genero }}</li>
-    <li> Fecha : {{ videojuego.fecha_lanzamiento }}</li>
-    <li> Plataforma: {{ videojuego.plataforma }}</li>
-</ul>
-{% endblock %}
+<div class="container mt-4 mb-4 p-4 border rounded-3 bg-light max-width-400 mx-auto">
+    <div class="text-center mb-4">
+    <h2 class="text-center mb-5"> Detalle del videojuego {{ videojuego.id }}</h2>
 
-{% block footer %}
-Autor: Juan Trejo
+    </div>
+    <div class="mb-4 fs-5">
+
+        <ul>
+            <li>
+                <Strong >ID: </Strong>  {{ videojuego.id }}
+            </li>
+            <li>
+                <Strong>Nombre: </Strong>  {{ videojuego.nombre }}
+            </li>
+            <li>
+                <Strong>Género: </Strong>  {{ videojuego.genero }}
+            </li>
+            <li>
+                <Strong>Fecha de Lanzamiento: </Strong>  {{ videojuego.fecha_lanzamiento }}
+            </li>
+            <li>
+                <Strong>Plataforma: </Strong>  {{ videojuego.plataforma }}
+            </li>
+        </ul>
+    </div>
+    
+    <div class="text-center">
+        <a href="/videojuegos" class="btn btn-primary mb-3 mt-4 justify-content-center">Volver al listado de videojuegos</a>
+    </div>
+</div>
+
 {% endblock %}

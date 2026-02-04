@@ -2,26 +2,43 @@
 {% block title %}Videojuegos{% endblock %}
 
 {% block content %}
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Género</th>
-            <th>Fecha de lanzamiento</th>
-            <th>Plataforma</th>
-            <th>Ver detalles</th>
-        </tr>
-        {% for videojuego in videojuegos %}
-        <tr>
-            <td>{{videojuego.id}}</td>
-            <td>{{videojuego.nombre}}</td>
-            <td>{{videojuego.genero}}</td>
-            <td>{{videojuego.fecha_lanzamiento}}</td>
-            <td>{{videojuego.plataforma}}</td>
-            <td><a href="/videojuegos/{{ videojuego.id }}">Ver</a></td>
-        </tr>
-        {% endfor %}
-    </table>
+<div class="container mt-4">
+    <h2 class="mb-4 text-center">Listado de Videojuegos</h2>
+    <div class="table-responsive shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+        <table class="table table-hover table-bordered text-center align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Género</th>
+                    <th scope="col">Fecha de lanzamiento</th>
+                    <th scope="col">Plataforma</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for videojuego in videojuegos %}
+                <tr>
+                    <th scope="row">{{ videojuego.id }}</th>
+                    <td>{{ videojuego.nombre }}</td>
+                    <td>{{ videojuego.genero }}</td>
+                    <td>{{ videojuego.fecha_lanzamiento }}</td>
+                    <td>{{ videojuego.plataforma }}</td>
+                    <td>
+                        <a href="/videojuegos/{{ videojuego.id }}" class="btn btn-primary btn-sm" title="Ver detalles">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                            </svg>
+                            Ver
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
 
 {% block footer %}
