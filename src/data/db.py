@@ -24,6 +24,12 @@ def get_session():
 
 def init_db():
     SQLModel.metadata.create_all(engine)
+    statement = select(Videojuego).where(Videojuego.id == 1)
+    resultado = session.exec(statement).first()
+    if resultado:
+        print("Data already initialized")
+        return
+    
     with Session(engine) as session:
         session.add(Videojuego(id=1, nombre="The Legend of Zelda: Breath of the Wild", fecha_lanzamiento="2017-03-03", genero="Action-adventure", plataforma="Nintendo Switch"))
         session.add(Videojuego(id=2, nombre="Marvel Rivals", fecha_lanzamiento="2024-11-27", genero="Fighting", plataforma="PC"))
