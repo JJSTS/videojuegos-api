@@ -1,0 +1,2 @@
+-Comando para arrancar el fastApi
+docker compose -f docker-compose-env.yml up -d --build
