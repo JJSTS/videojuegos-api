@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from models.videojuego import Videojuego
+from src.models.videojuego import Videojuego
 from sqlmodel import create_engine, SQLModel, Session
 import os
 

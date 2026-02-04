@@ -1,5 +1,6 @@
 from typing import Annotated
 from contextlib import asynccontextmanager
+from pathlib import Path
 from fastapi import Depends, FastAPI, HTTPException, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -7,10 +8,10 @@ from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from sqlmodel import Session, select
 
-from data.db import get_session, init_db
-from models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
-from data.videojuego_repository import VideojuegoRepository
-from routers.api_router import router as api_videojuegos_router
+from src.data.db import get_session, init_db
+from src.models.videojuego import Videojuego, VideojuegoCreate, VideojuegoResponse, map_create_to_videojuego, map_videojuego_to_response
+from src.data.videojuego_repository import VideojuegoRepository
+from src.routers.api_router import router as api_videojuegos_router
 
 import uvicorn
 
@@ -23,8 +24,9 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 app = FastAPI(lifespan=lifespan)
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+templates = Jinja2Templates(directory="src/templates")
 
 app.include_router(api_videojuegos_router)
 
