@@ -1,7 +1,6 @@
-from unittest import result
 from dotenv import load_dotenv
 from models.videojuego import Videojuego
-from sqlmodel import create_engine, SQLModel, Session, text, select
+from sqlmodel import create_engine, SQLModel, Session
 import os
 
 load_dotenv()
@@ -13,7 +12,7 @@ if not DATABASE_URL:
     db_server: str = os.getenv("DB_SERVER","fastapi-db")
     db_port: int = os.getenv("DB_PORT", 5432)
     db_name: str = os.getenv("DB_NAME","videojuegosdb")
-    DATABASE_URL = f"postgresql+psycopg://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
+    DATABASE_URL = f"postgresql+psycopg2://{db_user}:{db_password}@{db_server}:{db_port}/{db_name}"
 
 else:
     print("Using DATABASE_URL from environment")
@@ -33,6 +32,4 @@ def init_db():
         session.add(Videojuego(id=2, nombre="Marvel Rivals", fecha_lanzamiento="2024-11-27", genero="Fighting", plataforma="PC"))
         session.add(Videojuego(id=3, nombre="Minecraft", fecha_lanzamiento="2011-11-18", genero="Sandbox", plataforma="PC"))
         session.add(Videojuego(id=4, nombre="Among Us", fecha_lanzamiento="2018-06-15", genero="Party", plataforma="PC/Mobile"))
-        session.commit()
-        session.execute(text("SELECT setval('videojuego_id_seq', COALESCE((SELECT MAX(id) FROM videojuego), 1), true)"))
         session.commit()

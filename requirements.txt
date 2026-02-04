@@ -1,8 +1,10 @@
 fastapi
 uvicorn
 sqlmodel
+pymysql
 cryptography
 jinja2
 python-multipart
 dotenv
-psycopg[binary]
+asyncpg
+psycopg2-binary
