@@ -25,7 +25,6 @@ def get_session():
         yield session
 
 def init_db():
-    SQLModel.metadata.drop_all(engine) 
     SQLModel.metadata.create_all(engine)
     with Session(engine) as session:
         session.add(Videojuego(id=1, nombre="The Legend of Zelda: Breath of the Wild", fecha_lanzamiento="2017-03-03", genero="Action-adventure", plataforma="Nintendo Switch"))
